@@ -82,7 +82,7 @@ app.use(express.json());
 
 // Configuration
 const secret = process.env.JWT_SECRET;
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 8080;
 
 // Define mongoose schemas
 const userSchema = new mongoose.Schema({
@@ -721,6 +721,6 @@ app.get("/admin/me", authMiddleware, (req, res) => {
 
 
 app.listen(port, () => {
-    console.log('Server is listening on port 8000');
+    console.log('Server is listening on port 8080');
 });
 
