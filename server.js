@@ -7,6 +7,7 @@ import bcrypt from 'bcrypt';
 import { z } from 'zod';
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import helmet from 'helmet';
 // Simple URL validation function
 function isSafeUrl(url) {
   try {
@@ -33,9 +34,10 @@ const limiter = rateLimit({
 
 const app = express();
 app.set("trust proxy", 1);
-
+app.use(express.json({ limit: '10kb' }));
 app.use(limiter);
 app.use(cookieParser());
+app.use(helmet);
 // Configure CORS with allowed origins from environment variable
 const allowedOrigins = process.env.ALLOWED_ORIGINS ? 
   process.env.ALLOWED_ORIGINS.split(',').map(origin => origin.trim()) : [];
