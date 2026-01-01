@@ -1,4 +1,3 @@
-//  TODO: Can you create backend with standard folder structure like: week-4/hard ???
 import express from 'express';
 import jwt from 'jsonwebtoken';
 import mongoose from 'mongoose';
@@ -37,7 +36,7 @@ app.set("trust proxy", 1);
 app.use(express.json({ limit: '10kb' }));
 app.use(limiter);
 app.use(cookieParser());
-app.use(helmet);
+app.use(helmet());
 // Configure CORS with allowed origins from environment variable
 const allowedOrigins = process.env.ALLOWED_ORIGINS ? 
   process.env.ALLOWED_ORIGINS.split(',').map(origin => origin.trim()) : [];
@@ -720,7 +719,7 @@ app.get("/admin/me", authMiddleware, (req, res) => {
 });
 
 
-app.listen(port, () => {
+app.listen(port,'0.0.0.0', () => {
     console.log('Server is listening on port 8080');
 });
 
